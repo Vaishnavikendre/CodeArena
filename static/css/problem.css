@@ -1,0 +1,1200 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ========================================
+   CODEARENA — SOLVE PROBLEM PAGE
+   ======================================== */
+
+:root {
+    --background: #f8f7f3;
+    --white: #ffffff;
+    --charcoal: #282b25;
+    --charcoal-light: #34382f;
+    --text: #30332c;
+    --muted: #85877e;
+    --gold: #ac8e60;
+    --gold-light: #f5f0e6;
+    --border: #e9e7df;
+    --green: #568a68;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+select {
+    cursor: pointer;
+}
+
+/* ========================================
+   TOP NAVIGATION
+   ======================================== */
+
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 76px;
+    padding: 15px max(35px, calc((100vw - 1320px) / 2));
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+    color: var(--charcoal);
+    font-family: 'Manrope', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: var(--charcoal);
+    color: #d9c39c;
+    font-size: 25px;
+    letter-spacing: 0;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.top-nav a {
+    color: #74776d;
+    font-size: 13px;
+    font-weight: 700;
+    transition: color 0.2s;
+}
+
+.top-nav a:hover {
+    color: var(--gold);
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 38px;
+    padding: 0 16px;
+    border: 1px solid #e5dfd3;
+    border-radius: 8px;
+    background: #f7f3eb;
+    color: #90764e;
+    font-size: 12px;
+    font-weight: 800;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.back-button:hover {
+    transform: translateX(-2px);
+    background: #efe6d6;
+}
+
+/* ========================================
+   MAIN LAYOUT
+   ======================================== */
+
+.problem-container {
+    width: min(100% - 70px, 1320px);
+    margin: 0 auto;
+    padding: 43px 0 25px;
+}
+
+/* ========================================
+   PAGE HEADING
+   ======================================== */
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+}
+
+.page-heading h1 {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(28px, 3.5vw, 39px);
+    font-weight: 800;
+    letter-spacing: -1.7px;
+    line-height: 1.3;
+}
+
+.page-heading h1 span {
+    color: var(--gold);
+}
+
+.page-subtitle {
+    margin: 9px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.workspace-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+    padding: 10px 14px;
+    border: 1px solid #e5e6dc;
+    border-radius: 30px;
+    background: #fff;
+    color: #71766a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.workspace-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #83a887;
+    box-shadow: 0 0 0 4px #eaf3e8;
+}
+
+/* ========================================
+   QUESTION CARD
+   ======================================== */
+
+.problem-section {
+    margin-bottom: 35px;
+    padding: 35px 40px;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: var(--white);
+    box-shadow: 0 7px 30px rgba(40, 43, 37, 0.025);
+}
+
+.section-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.section-number {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.section-decoration {
+    color: #c4ae89;
+    font-size: 25px;
+}
+
+.problem-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.problem-title-row h2 {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.3;
+}
+
+.problem-intro {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.problem-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.difficulty-badge,
+.topic-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 31px;
+    padding: 5px 12px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.difficulty-badge.easy {
+    background: #e9f4eb;
+    color: #4c8660;
+}
+
+.difficulty-badge.medium {
+    background: #fbf1df;
+    color: #a98443;
+}
+
+.difficulty-badge.hard {
+    background: #fbe9e6;
+    color: #bd665d;
+}
+
+.topic-badge {
+    background: #f3f0e9;
+    color: #8e7754;
+}
+
+.section-divider {
+    height: 1px;
+    margin: 29px 0;
+    background: var(--border);
+}
+
+/* ========================================
+   QUESTION CONTENT
+   ======================================== */
+
+.content-block + .content-block {
+    margin-top: 32px;
+}
+
+.content-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 15px;
+}
+
+.content-icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #f5f0e6;
+    color: #a38555;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.content-heading h3 {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.problem-description {
+    margin: 0;
+    color: #666a60;
+    font-size: 13px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+/* ========================================
+   EXAMPLE BOX
+   ======================================== */
+
+.example-box {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid #eee8dc;
+    border-radius: 11px;
+    background: #faf8f3;
+}
+
+.example-column {
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid #eeeae2;
+    border-radius: 9px;
+    background: white;
+}
+
+.example-label {
+    display: block;
+    margin-bottom: 13px;
+    color: #a4885c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.example-column pre {
+    margin: 0;
+    overflow-x: auto;
+    color: #42473d;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   CONSTRAINTS
+   ======================================== */
+
+.constraints {
+    margin: 0;
+    padding: 17px 20px 17px 37px;
+    border: 1px solid #eae9e2;
+    border-radius: 9px;
+    background: #fafaf7;
+}
+
+.constraints li {
+    padding: 5px 0;
+    color: #666a60;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.constraints li::marker {
+    color: var(--gold);
+}
+
+/* ========================================
+   EDITOR HEADING
+   ======================================== */
+
+.editor-section {
+    margin-bottom: 28px;
+}
+
+.editor-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 19px;
+    padding: 0 3px;
+}
+
+.editor-heading h2,
+.output-heading h2 {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.editor-heading p:not(.eyebrow) {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.editor-heading-icon {
+    display: grid;
+    place-items: center;
+    width: 49px;
+    height: 49px;
+    border-radius: 13px;
+    background: #eee9de;
+    color: #9b7f52;
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+/* ========================================
+   DARK CODE EDITOR
+   ======================================== */
+
+.editor-card {
+    overflow: hidden;
+    border: 1px solid #3e4339;
+    border-radius: 15px;
+    background: var(--charcoal);
+    box-shadow: 0 15px 35px rgba(39, 42, 35, 0.09);
+}
+
+.editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    min-height: 66px;
+    padding: 13px 23px;
+    border-bottom: 1px solid #41463c;
+    background: #30342c;
+}
+
+.editor-header-left,
+.editor-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.window-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.window-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.window-dots span:nth-child(1) {
+    background: #c8786e;
+}
+
+.window-dots span:nth-child(2) {
+    background: #d6b579;
+}
+
+.window-dots span:nth-child(3) {
+    background: #81a780;
+}
+
+.editor-title {
+    color: #d6d8cf;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.language-label {
+    color: #a0a699;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+#language {
+    min-width: 110px;
+    padding: 9px 13px;
+    border: 1px solid #5b6254;
+    border-radius: 7px;
+    background: #40463a;
+    color: #f1e9da;
+    font-size: 12px;
+    font-weight: 700;
+    outline: none;
+}
+
+#language:focus {
+    border-color: #d0b587;
+}
+
+/* MAIN TEXTAREA */
+
+#code-editor {
+    display: block;
+    width: 100%;
+    min-height: 390px;
+    padding: 28px 30px;
+    resize: vertical;
+    border: 0;
+    outline: none;
+    background: #282c26;
+    color: #e7e8db;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.9;
+    tab-size: 4;
+    caret-color: #d8ba84;
+}
+
+#code-editor::selection {
+    background: #655b42;
+    color: white;
+}
+
+#code-editor:focus {
+    background: #2b3029;
+}
+
+/* ========================================
+   EDITOR FOOTER AND BUTTONS
+   ======================================== */
+
+.editor-footer {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    grid-template-rows: auto auto;
+    column-gap: 28px;
+    row-gap: 16px;
+    align-items: center;
+
+    padding: 16px 24px 20px;
+}
+
+/* Ready status */
+.editor-hint {
+    grid-column: 1;
+    grid-row: 1;
+
+    align-self: center;
+
+    color: #9ca095;
+    font-size: 14px;
+}
+
+/* Custom input */
+.custom-input-section {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Buttons */
+.editor-buttons {
+    grid-column: 1;
+    grid-row: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0;
+}
+
+/* Make sure old spacing doesn't interfere */
+#run-button,
+#reset-code,
+#submit-button {
+    margin-left: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .editor-footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .editor-hint {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .custom-input-section {
+        grid-column: 1;
+        grid-row: 2;
+        width: 100%;
+    }
+
+    .editor-buttons {
+        grid-column: 1;
+        grid-row: 3;
+        flex-wrap: wrap;
+    }
+}
+
+#run-button,
+#submit-button {
+    min-height: 42px;
+    padding: 10px 19px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+}
+
+#run-button {
+    border: 1px solid #777e6e;
+    background: #454b3e;
+    color: #f4f3ec;
+}
+
+#run-button:hover {
+    transform: translateY(-2px);
+    background: #59614f;
+}
+
+#submit-button {
+    border: 1px solid #d5b889;
+    background: #d4b787;
+    color: #302b21;
+}
+
+#submit-button:hover {
+    transform: translateY(-2px);
+    background: #ebcea0;
+    box-shadow: 0 5px 15px rgba(212, 183, 135, 0.2);
+}
+
+#run-button:disabled,
+#submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ========================================
+   OUTPUT SECTION
+   ======================================== */
+
+.output-section {
+    padding: 28px 30px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: white;
+}
+
+.output-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.output-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border-radius: 7px;
+    background: #f2f0e9;
+    color: #92794f;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+#output {
+    min-height: 120px;
+    max-height: 420px;
+    margin: 0;
+    padding: 23px;
+    overflow: auto;
+    border: 1px solid #41473d;
+    border-radius: 10px;
+    background: #292e28;
+    color: #e1e8da;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.page-footer {
+    padding: 30px 0 15px;
+    color: #a3a49a;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .top-bar {
+        padding: 15px 24px;
+    }
+
+    .top-nav {
+        gap: 18px;
+    }
+
+    .problem-container {
+        width: calc(100% - 48px);
+    }
+
+    .problem-section {
+        padding: 28px;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .top-bar {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 13px 17px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .top-nav {
+        order: 3;
+        justify-content: center;
+        width: 100%;
+        gap: 22px;
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+    }
+
+    .top-nav a {
+        font-size: 11px;
+    }
+
+    .problem-container {
+        width: calc(100% - 30px);
+        padding-top: 25px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .problem-section {
+        padding: 23px 19px;
+    }
+
+    .example-box {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-header,
+    .editor-footer {
+        padding: 15px;
+    }
+
+    #code-editor {
+        min-height: 340px;
+        padding: 20px 17px;
+        font-size: 12px;
+    }
+
+    .editor-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .editor-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #run-button,
+    #submit-button {
+        padding: 11px 8px;
+    }
+
+    .output-section {
+        padding: 22px 18px;
+    }
+
+    #output {
+        padding: 16px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+/* =========================================
+   CODEARENA CUSTOM INPUT
+   ========================================= */
+
+.custom-input-section {
+    margin: 18px 0;
+    padding: 16px;
+    background: #292c27;
+    border: 1px solid #55594e;
+    border-radius: 10px;
+}
+
+.custom-input-section label {
+    display: block;
+    margin-bottom: 10px;
+    color: #e7c891;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+#custom-input {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    box-sizing: border-box;
+
+    background: #1e201d;
+    color: #f5f0e6;
+
+    border: 1px solid #55594e;
+    border-radius: 8px;
+
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.5;
+
+    resize: vertical;
+    outline: none;
+}
+
+#custom-input::placeholder {
+    color: #8f9388;
+}
+
+#custom-input:focus {
+    border-color: #d8b978;
+    box-shadow: 0 0 0 2px rgba(216, 185, 120, 0.12);
+}
+
+
+/* =========================================
+   CLEAR INPUT BUTTON
+   ========================================= */
+
+#clear-input {
+    margin-top: 8px;
+    padding: 9px 16px;
+
+    background: #292c27;
+    color: #e7c891;
+
+    border: 1px solid #777866;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#clear-input:hover {
+    background: #e7c891;
+    color: #20231f;
+    border-color: #e7c891;
+}
+
+
+/* =========================================
+   RESET CODE BUTTON
+   ========================================= */
+
+#reset-code {
+    padding: 12px 20px;
+    margin-left: 10px;
+
+    background: transparent;
+    color: #e7c891;
+
+    border: 1px solid #b8a77a;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#reset-code:hover {
+    background: #e7c891;
+    color: #20231f;
+    border-color: #e7c891;
+    transform: translateY(-1px);
+}
+
+#reset-code:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   CODEARENA ACTION BUTTONS
+   ========================================= */
+
+#run-button,
+#submit-button,
+#reset-code {
+    min-height: 42px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Run Code */
+#run-button {
+    background: #292c27;
+    color: #e7c891;
+    border: 1px solid #777866;
+}
+
+#run-button:hover {
+    background: #3a3d36;
+    border-color: #e7c891;
+}
+
+/* Submit Solution */
+#submit-button {
+    background: #e7c891;
+    color: #20231f;
+    border: 1px solid #e7c891;
+}
+
+#submit-button:hover {
+    background: #f0d39d;
+    transform: translateY(-1px);
+}
+
+/* Reset Code */
+#reset-code {
+    background: transparent;
+    color: #e7c891;
+    border: 1px solid #777866;
+}
+
+#reset-code:hover {
+    background: #292c27;
+    border-color: #e7c891;
+}
+
+/* Button spacing */
+#run-button + #submit-button,
+#submit-button + #reset-code {
+    margin-left: 8px;
+}
+
+/* =========================================
+   PROBLEM PAGE BOTTOM LAYOUT
+   ========================================= */
+
+.custom-input-section {
+    width: 330px;
+    margin-left: auto;
+    margin-right: 28px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+/* Keep the status and buttons neatly aligned */
+.problem-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Make buttons consistent */
+#run-button,
+#reset-code,
+#submit-button {
+    margin-left: 0 !important;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+    .custom-input-section {
+        width: 100%;
+        margin: 18px 0;
+    }
+
+    .problem-actions {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   EXECUTION OUTPUT
+   ========================================= */
+
+#output {
+    margin: 18px 0 0;
+    padding: 20px;
+
+    min-height: 120px;
+    max-height: 350px;
+    overflow: auto;
+    box-sizing: border-box;
+
+    background: #1e201d;
+    color: #d9ddd2;
+
+    border: 1px solid #55594e;
+    border-radius: 10px;
+
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Scrollbar */
+#output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#output::-webkit-scrollbar-track {
+    background: #292c27;
+    border-radius: 8px;
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: #777866;
+    border-radius: 8px;
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+    background: #b8a77a;
+}
+
+.output-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    color: #e7c891;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.output-status::first-letter {
+    color: #b8a77a;
+}
+
+.output-status {
+    padding: 6px 10px;
+    background: #292c27;
+    border: 1px solid #55594e;
+    border-radius: 6px;
+}
+
+#output {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#output:focus {
+    outline: none;
+    border-color: #777866;
+}
+
+.output-section {
+    margin-top: 24px;
+}
+
+.output-section h3 {
+    color: #e7c891;
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.output-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+
+.output-heading .eyebrow {
+    margin-bottom: 6px;
+    color: #9ca095;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.output-heading h2 {
+    margin: 0;
+    color: #20231f;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.output-status {
+    flex-shrink: 0;
+}
+
+#output {
+    position: relative;
+    background: #191b18;
+    border: 1px solid #4f534b;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+#output::selection {
+    background: #5c5848;
+    color: #ffffff;
+}

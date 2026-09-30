@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | CodeArena</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-icon">⌘</span>
+            <span>CodeArena</span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+
+            <a class="nav-link active"
+               href="{{ url_for('dashboard') }}">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a class="nav-link" href="#practice-problems">
+                <span>⌘</span> Problems
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('submissions') }}">
+                <span>▤</span> My Submissions
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-message">
+                <span class="sidebar-message-icon">✳</span>
+                <p>Great things are built one problem at a time.</p>
+            </div>
+
+            <a class="logout-link"
+               href="{{ url_for('logout') }}">
+                ↪ Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+
+    <div class="main-area">
+
+        <!-- Top Navigation -->
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button class="menu-toggle"
+                        id="menu-toggle"
+                        type="button"
+                        aria-label="Toggle menu">
+                    ☰
+                </button>
+
+                <span class="breadcrumb">
+                    Workspace <span>/</span> Dashboard
+                </span>
+
+            </div>
+
+            <div class="header-right">
+
+                <span class="header-greeting">
+                    Welcome, {{ username }}
+                </span>
+
+                <div class="user-avatar">
+                    {{ username[0]|upper }}
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <!-- Welcome Section -->
+
+            <section class="welcome-section">
+
+                <div>
+                    <p class="eyebrow">YOUR CODING WORKSPACE</p>
+
+                    <h1>Welcome back, {{ username }} <span>✳</span></h1>
+
+                    <p class="welcome-description">
+                        Every problem you solve is progress.
+                        Keep your momentum going.
+                    </p>
+                </div>
+
+                <a href="#practice-problems"
+                   class="primary-button">
+                    Explore Problems →
+                </a>
+
+            </section>
+
+
+            <!-- Statistics -->
+
+            <section class="stats-container">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Problems Solved</span>
+                        <span class="stat-symbol">✓</span>
+                    </div>
+
+                    <p class="stat-value">
+                        {{ problems_solved }}
+                        <small>/ {{ total_problems }}</small>
+                    </p>
+
+                    <p class="stat-description">
+                        Problems completed
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Submissions</span>
+                        <span class="stat-symbol">↗</span>
+                    </div>
+
+                    <p class="stat-value">
+                        {{ total_submissions }}
+                    </p>
+
+                    <p class="stat-description">
+                        Your coding attempts
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Accepted</span>
+                        <span class="stat-symbol">◎</span>
+                    </div>
+
+                    <p class="stat-value">
+                        {{ accepted_submissions }}
+                    </p>
+
+                    <p class="stat-description">
+                        Successful submissions
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Success Rate</span>
+                        <span class="stat-symbol">◈</span>
+                    </div>
+
+                    <p class="stat-value">
+                        {{ success_rate }}%
+                    </p>
+
+                    <p class="stat-description">
+                        Accepted submissions
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Progress -->
+
+            <section class="progress-section">
+
+                <div class="progress-heading">
+
+                    <div>
+                        <p class="eyebrow">YOUR JOURNEY</p>
+                        <h2>Coding Progress</h2>
+                        <p>
+                            You've solved {{ problems_solved }}
+                            out of {{ total_problems }} problems.
+                        </p>
+                    </div>
+
+                    <div class="progress-percentage">
+                        {{ progress_percentage }}%
+                    </div>
+
+                </div>
+
+                <div class="progress-bar"
+                     role="progressbar"
+                     aria-valuenow="{{ progress_percentage }}"
+                     aria-valuemin="0"
+                     aria-valuemax="100">
+
+                    <div class="progress-fill"
+                         data-progress="{{ progress_percentage }}">
+                    </div>
+
+                </div>
+
+                <div class="progress-footer">
+                    <span>Keep going!</span>
+                    <span>{{ total_problems }} total problems</span>
+                </div>
+
+            </section>
+
+
+            <!-- Practice Problems -->
+
+            <section class="problems-section"
+                     id="practice-problems">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">PRACTICE & IMPROVE</p>
+                        <h2>Problem Library</h2>
+                        <p>
+                            Choose a challenge and sharpen your skills.
+                        </p>
+                    </div>
+
+                    <span class="problem-count">
+                        {{ total_problems }} Problems
+                    </span>
+
+                </div>
+
+
+                <!-- Search and Filters -->
+
+                <div class="problem-filters">
+
+                    <div class="search-wrapper">
+
+                        <span class="search-icon">⌕</span>
+
+                        <input
+                            type="search"
+                            id="problem-search"
+                            placeholder="Search problems..."
+                            autocomplete="off"
+                            aria-label="Search problems"
+                        >
+
+                    </div>
+
+
+                    <select id="difficulty-filter"
+                            aria-label="Filter by difficulty">
+
+                        <option value="all">
+                            All Difficulties
+                        </option>
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+
+                    <select id="topic-filter"
+                            aria-label="Filter by topic">
+
+                        <option value="all">
+                            All Topics
+                        </option>
+
+                        <option value="Arrays">
+                            Arrays
+                        </option>
+
+                        <option value="Strings">
+                            Strings
+                        </option>
+
+                        <option value="Mathematics">
+                            Mathematics
+                        </option>
+
+                        <option value="Searching">
+                            Searching
+                        </option>
+
+                        <option value="Stack">
+                            Stack
+                        </option>
+
+                    </select>
+
+
+                    <select id="status-filter"
+                            aria-label="Filter by status">
+
+                        <option value="all">
+                            All Problems
+                        </option>
+
+                        <option value="solved">
+                            Solved
+                        </option>
+
+                        <option value="unsolved">
+                            Unsolved
+                        </option>
+
+                    </select>
+
+
+                    <button type="button"
+                            id="reset-filters"
+                            class="reset-button">
+                        ↺ Reset
+                    </button>
+
+                </div>
+
+
+                <!-- Problem Table -->
+
+                <div class="problem-table-wrapper">
+
+                    <div class="problem-table-header">
+
+                        <span>PROBLEM</span>
+                        <span>TOPIC</span>
+                        <span>DIFFICULTY</span>
+                        <span>STATUS</span>
+                        <span>ACTION</span>
+
+                    </div>
+
+
+                    <div id="problems-list">
+
+                        {% for problem in problems %}
+
+                        <div
+                            class="problem-card"
+                            data-title="{{ problem['title']|lower }}"
+                            data-difficulty="{{ problem['difficulty'] }}"
+                            data-topic="{{ problem['topic'] }}"
+                            data-solved="{{ 'true' if problem['id'] in solved_problem_ids else 'false' }}"
+                        >
+
+                            <div class="problem-name">
+
+                                <span class="problem-number">
+                                    {{ loop.index|string }}
+                                </span>
+
+                                <div>
+                                    <h3>{{ problem["title"] }}</h3>
+
+                                    <p>
+                                        {{ problem["description"]|truncate(85) }}
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="problem-topic">
+                                {{ problem["topic"] }}
+                            </div>
+
+
+                            <div>
+
+                                <span class="difficulty-badge difficulty-{{ problem['difficulty']|lower }}">
+                                    {{ problem["difficulty"] }}
+                                </span>
+
+                            </div>
+
+
+                            <div>
+
+                                {% if problem["id"] in solved_problem_ids %}
+
+                                    <span class="solved-badge">
+                                        ✓ Solved
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="unsolved-badge">
+                                        ○ Unsolved
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div>
+
+                                <a class="solve-link"
+                                   href="{{ url_for('problem', problem_id=problem['id']) }}">
+                                    Solve →
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="empty-state"
+                         id="no-results"
+                         hidden>
+
+                        <h3>No matching problems</h3>
+
+                        <p>
+                            Try another search or reset your filters.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <footer class="dashboard-footer">
+                CodeArena · Keep learning. Keep building.
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

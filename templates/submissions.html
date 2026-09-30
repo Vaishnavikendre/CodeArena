@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Submissions | CodeArena</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/submissions.css') }}">
+</head>
+
+<body class="submissions-page">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-icon">⌘</span>
+            <span>CodeArena</span>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav">
+
+            <a class="nav-link"
+               href="{{ url_for('dashboard') }}">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a class="nav-link"
+               href="{{ url_for('dashboard') }}#practice-problems">
+                <span>⌘</span> Problems
+            </a>
+
+            <a class="nav-link active"
+               href="{{ url_for('submissions') }}">
+                <span>▤</span> My Submissions
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-message">
+                <span class="sidebar-message-icon">✳</span>
+
+                <p>
+                    Every attempt brings you closer
+                    to your next breakthrough.
+                </p>
+            </div>
+
+            <a class="logout-link"
+               href="{{ url_for('logout') }}">
+                ↪ Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main Area -->
+
+    <div class="main-area">
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    id="menu-toggle"
+                    aria-label="Toggle menu"
+                    aria-expanded="false">
+                    ☰
+                </button>
+
+                <span class="breadcrumb">
+                    Workspace <span>/</span> My Submissions
+                </span>
+
+            </div>
+
+            <a class="header-dashboard-link"
+               href="{{ url_for('dashboard') }}">
+                ← Dashboard
+            </a>
+
+        </header>
+
+
+        <main class="submissions-content">
+
+            <!-- Welcome Banner -->
+
+            <section class="hero-banner">
+
+                <div class="hero-content">
+
+                    <p class="hero-eyebrow">
+                        YOUR CODING JOURNEY
+                    </p>
+
+                    <h1>Submission History<span>.</span></h1>
+
+                    <p>
+                        Every solution tells a story.
+                        Track your attempts, celebrate
+                        your wins and learn from every challenge.
+                    </p>
+
+                    <a class="hero-button"
+                       href="{{ url_for('dashboard') }}#practice-problems">
+                        Explore Problems ↗
+                    </a>
+
+                </div>
+
+                <div class="hero-art" aria-hidden="true">
+                    <div class="hero-orbit orbit-one"></div>
+                    <div class="hero-orbit orbit-two"></div>
+                    <div class="hero-code">&lt;/&gt;</div>
+                    <div class="hero-star">✳</div>
+                </div>
+
+            </section>
+
+
+            <!-- Calculate Statistics -->
+
+            {% set stats = namespace(
+                accepted=0,
+                wrong=0,
+                other=0
+            ) %}
+
+            {% for submission in submissions %}
+
+                {% if submission["status"] == "Accepted" %}
+
+                    {% set stats.accepted = stats.accepted + 1 %}
+
+                {% elif submission["status"] == "Wrong Answer" %}
+
+                    {% set stats.wrong = stats.wrong + 1 %}
+
+                {% else %}
+
+                    {% set stats.other = stats.other + 1 %}
+
+                {% endif %}
+
+            {% endfor %}
+
+
+            <!-- Statistics Cards -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-heading">
+                        <span>Total Attempts</span>
+                        <span class="stat-icon">↗</span>
+                    </div>
+
+                    <div class="stat-value">
+                        {{ submissions|length }}
+                    </div>
+
+                    <p>All your coding submissions</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-heading">
+                        <span>Accepted</span>
+                        <span class="stat-icon success-icon">✓</span>
+                    </div>
+
+                    <div class="stat-value">
+                        {{ stats.accepted }}
+                    </div>
+
+                    <p>Successfully solved attempts</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-heading">
+                        <span>Wrong Answers</span>
+                        <span class="stat-icon warning-icon">!</span>
+                    </div>
+
+                    <div class="stat-value">
+                        {{ stats.wrong }}
+                    </div>
+
+                    <p>Attempts to revisit</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-heading">
+                        <span>Acceptance Rate</span>
+                        <span class="stat-icon gold-icon">◈</span>
+                    </div>
+
+                    <div class="stat-value">
+
+                        {% if submissions|length > 0 %}
+
+                            {{ ((stats.accepted / (submissions|length)) * 100)|round(1) }}%
+
+                        {% else %}
+
+                            0%
+
+                        {% endif %}
+
+                    </div>
+
+                    <p>Accepted out of all attempts</p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Submission History -->
+
+            <section class="history-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="eyebrow">ACTIVITY LOG</p>
+
+                        <h2>Your Submissions</h2>
+
+                        <p>
+                            Browse and review your previous
+                            coding attempts.
+                        </p>
+
+                    </div>
+
+                    <div class="history-count">
+                        {{ submissions|length }} submissions
+                    </div>
+
+                </div>
+
+
+                <!-- Search and Filters -->
+
+                <div class="submission-filters">
+
+                    <div class="search-wrapper">
+
+                        <span class="search-icon">⌕</span>
+
+                        <input
+                            type="search"
+                            id="submission-search"
+                            placeholder="Search by problem name..."
+                            aria-label="Search submissions"
+                        >
+
+                    </div>
+
+                    <select
+                        id="status-filter"
+                        aria-label="Filter submissions by status">
+
+                        <option value="all">
+                            All Results
+                        </option>
+
+                        <option value="Accepted">
+                            Accepted
+                        </option>
+
+                        <option value="Wrong Answer">
+                            Wrong Answer
+                        </option>
+
+                        <option value="Runtime Error">
+                            Runtime Error
+                        </option>
+
+                        <option value="Time Limit Exceeded">
+                            Time Limit Exceeded
+                        </option>
+
+                        <option value="Error">
+                            Error
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        id="reset-filters"
+                        class="reset-button">
+                        ↺ Reset
+                    </button>
+
+                </div>
+
+
+                <!-- Table -->
+
+                <div class="table-scroll">
+
+                    <div class="table-header">
+
+                        <span>PROBLEM</span>
+                        <span>RESULT</span>
+                        <span>TEST CASES</span>
+                        <span>SUBMITTED</span>
+                        <span>DETAILS</span>
+
+                    </div>
+
+
+                    <div id="submissions-list">
+
+                        {% for submission in submissions %}
+
+                        <div
+                            class="submission-row"
+                            data-title="{{ submission['title']|lower }}"
+                            data-status="{{ submission['status'] }}"
+                        >
+
+                            <!-- Problem -->
+
+                            <div class="problem-cell">
+
+                                <div class="problem-icon">
+                                    &lt;/&gt;
+                                </div>
+
+                                <div class="problem-info">
+
+                                    <h3>
+                                        {{ submission["title"] }}
+                                    </h3>
+
+                                    <span>
+                                        Submission #{{ submission["id"] }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Result -->
+
+                            <div>
+
+                                {% if submission["status"] == "Accepted" %}
+
+                                    <span class="status-badge accepted">
+                                        <span class="status-dot"></span>
+                                        Accepted
+                                    </span>
+
+                                {% elif submission["status"] == "Wrong Answer" %}
+
+                                    <span class="status-badge wrong">
+                                        <span class="status-dot"></span>
+                                        Wrong Answer
+                                    </span>
+
+                                {% elif submission["status"] == "Runtime Error" %}
+
+                                    <span class="status-badge error">
+                                        <span class="status-dot"></span>
+                                        Runtime Error
+                                    </span>
+
+                                {% elif submission["status"] == "Time Limit Exceeded" %}
+
+                                    <span class="status-badge warning">
+                                        <span class="status-dot"></span>
+                                        Time Limit Exceeded
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status-badge neutral">
+                                        <span class="status-dot"></span>
+                                        {{ submission["status"] }}
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+                                                    
+                            <!-- Test Cases -->
+
+                            <div class="tests-cell">
+
+                                {% set passed = submission["passed"] or 0 %}
+                                {% set total = submission["total"] or 0 %}
+
+                                {% if total > 0 %}
+                                    {% set percentage = (passed * 100 / total)|round|int %}
+                                {% else %}
+                                    {% set percentage = 0 %}
+                                {% endif %}
+
+                                <div class="tests-label">
+                                    <span>{{ passed }} / {{ total }} passed</span>
+                                    <span>{{ percentage }}%</span>
+                                </div>
+
+                                <div class="tests-track">
+                                    <div
+                                        class="tests-fill {% if submission['status'] == 'Accepted' %}complete{% endif %}"
+                                        data-progress="{{ percentage }}">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Date -->
+
+                            <div class="date-cell">
+                                {{ submission["created_at"] }}
+                            </div>
+
+
+                            <!-- Details -->
+
+                            <div>
+
+                                <a
+                                    class="details-link"
+                                    href="{{ url_for('submission_details', submission_id=submission['id']) }}">
+                                    View ↗
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Empty State -->
+
+                <div
+                    class="empty-state"
+                    id="no-results"
+                    {% if submissions|length > 0 %}hidden{% endif %}
+                >
+
+                    <div class="empty-icon">⌕</div>
+
+                    <h3>
+                        {% if submissions|length == 0 %}
+                            No submissions yet
+                        {% else %}
+                            No matching submissions
+                        {% endif %}
+                    </h3>
+
+                    <p id="empty-message">
+
+                        {% if submissions|length == 0 %}
+
+                            Your coding journey starts
+                            with your first submission.
+
+                        {% else %}
+
+                            Try a different search or
+                            reset your filters.
+
+                        {% endif %}
+
+                    </p>
+
+                    {% if submissions|length == 0 %}
+
+                        <a class="empty-button"
+                           href="{{ url_for('dashboard') }}#practice-problems">
+                            Start Solving →
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </section>
+
+
+            <footer class="page-footer">
+                CodeArena · Every attempt is progress.
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/submissions.js') }}"></script>
+
+</body>
+
+</html>
